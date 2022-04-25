@@ -1,5 +1,5 @@
-소식마당 - SOsik MAdang
+소食마당 - SOsik MAdang
 ======================
- **소**식**마**당 \[**SO**sik **MA**dang\]은 [소마센터](https://goo.gl/maps/y3m9KtLV7YRQQMYw5) 근처의 맛집들의 정보를 보여주고, 리뷰와 별점을 남기고 공유할 수 있는 공간입니다🍖
+ **소**食**마**당 \[**SO**sik **MA**dang\]은 [소마센터](https://goo.gl/maps/y3m9KtLV7YRQQMYw5) 근처의 맛집들의 정보를 보여주고, 리뷰와 별점을 남기고 공유할 수 있는 공간입니다🍖
 
  *내용 추가 예정*

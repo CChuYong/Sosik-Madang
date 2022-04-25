@@ -1,5 +1,5 @@
 # SOsik-MAdang frontend
- **소**식**마**당의 프론트엔드입니다.
+ **소**食**마**당의 프론트엔드입니다.
 
 ## Project setup
 ```
