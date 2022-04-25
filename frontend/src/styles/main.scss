@@ -1,0 +1,13 @@
+@import url("//cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+
+* {
+  font-family: "Pretendard", "Noto Sans CJK KR", "Noto Sans CJK", "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
+  box-sizing: content-box;
+  text-rendering: geometricPrecision;
+  shape-rendering: geometricPrecision;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
