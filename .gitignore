@@ -1,0 +1,9 @@
+# 종속성 관련 폴더
+node_modules/
+jspm_packages/
+
+# JetBrains IDE 관련 임시파일
+.idea
+
+# Environment 임시 파일
+.env
