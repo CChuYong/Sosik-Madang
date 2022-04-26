@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #nav {
   display: flex;
   align-items: center;
@@ -38,6 +38,10 @@ export default {
   backdrop-filter: blur(0.25rem);
 
   transition: background-color 0.5s;
+
+  @media screen and (max-width: 450px) {
+    padding: $navbar-inner-padding-v $navbar-inner-padding-h-smallscreen;
+  }
 
   .title {
     display: flex;
