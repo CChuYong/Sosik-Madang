@@ -1,6 +1,11 @@
 <template>
   <nav id="nav" :class="{ 'before-mount': !isMounted }">
     <span class="title"><strong>소</strong><span style="font-size: 0.95em">食</span><strong>마</strong><span>당</span></span>
+
+    <div class="nav-icons" title="전체 맛집 목록 보기" @click="showAllShopsClick">
+      <img class="icon" src="@/assets/icons/mdi-format-list-text-white.svg" />
+      <span class="text">전체 맛집 목록 보기</span>
+    </div>
   </nav>
 </template>
 
@@ -11,6 +16,11 @@ export default {
     return {
       isMounted: false,
     };
+  },
+  methods: {
+    showAllShopsClick() {
+      // TODO
+    },
   },
   mounted() {
     // TRANSITION
@@ -25,6 +35,7 @@ export default {
 #nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   position: fixed;
   left: 0;
@@ -52,9 +63,47 @@ export default {
 
     strong { font-weight: 700; }
 
-    * { transition: transform 1s cubic-bezier(0, 0, 0, 1), opacity 1s cubic-bezier(0, 0, 0, 1); }
+    * { transition: transform 1s $ease-out-bezier, opacity 1s $ease-out-bezier; }
     *:nth-child(even) { transform: translateY(0.2em); }
     *:nth-child(odd) { transform: translateY(-0.2em); }
+  }
+
+  .nav-icons {
+    display: flex;
+    align-items: center;
+
+    height: 2em;
+    padding: 0.5em 0.75em;
+    border-radius: 2em;
+    cursor: pointer;
+    user-select: none;
+
+    transition: background-color 0.33s $ease-out-bezier, box-shadow 0.33s $ease-out-bezier, transform 0.33s $ease-out-bezier;
+
+    @media screen and (max-width: 700px) {
+      .text {
+        display: none;
+      }
+    }
+
+    .icon {
+      width: 2em;
+      height: 2em;
+    }
+
+    .text {
+      margin-left: 0.5em;
+    }
+
+    &:hover, &:active {
+      background-color: rgba($body-foreground-color, 0.25);
+      box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.25);
+      transform: scale(1.025);
+    }
+
+    &:active {
+      transform: scale(0.975) !important;
+    }
   }
 
   &.before-mount {
