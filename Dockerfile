@@ -6,8 +6,9 @@ LABEL maintainer="swm.elice.io"
 
 # Vue.JS를 빌드합니다
 WORKDIR /frontend
-RUN npm install \
-    npm run build
+RUN npm install -g yarn @vue/cli \
+    yarn install --frozen-lockfile \
+    yarn build
 COPY dist ../
 
 # Node.JS 관련 모듈을 설치합니다.
