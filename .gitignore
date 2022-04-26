@@ -7,3 +7,6 @@ jspm_packages/
 
 # Environment 임시 파일
 .env
+
+# FE/BE 연동 관련 빌드파일
+BackEnd/public/

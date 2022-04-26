@@ -4,10 +4,15 @@ const app = express();
 //.env파일을 환경변수로 불러오기 위한 구문
 require('dotenv').config();
 
+//API 라우팅을 위한 부분
+const shops = require('./routes/api/shops');
+app.use('/api/shops', shops);
 
-app.get('/', (req, res)=>{
-    res.send('Welcome to SoSick-Madang~!')
-});
+//FrontEnd 렌더링을 위한 부분
+const index = require('./routes/index');
+app.use('/', index);
+app.use(require('connect-history-api-fallback')())
+
 
 //서버를 호스트하는 구문
 const port = process.env.PORT || 3000
