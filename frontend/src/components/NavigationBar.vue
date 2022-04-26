@@ -44,7 +44,7 @@ export default {
   height: $navbar-height;
   padding: $navbar-inner-padding-v $navbar-inner-padding-h;
 
-  background-color: rgba($body-background-color, 0.5);
+  background-color: rgba($body-background-color, 0.75);
   box-shadow: 0 0.05rem 0.66rem rgba($body-background-color, 0.5);
   backdrop-filter: blur(0.25rem);
 
@@ -78,7 +78,9 @@ export default {
     cursor: pointer;
     user-select: none;
 
-    transition: background-color 0.33s $ease-out-bezier, box-shadow 0.33s $ease-out-bezier, transform 0.33s $ease-out-bezier;
+    transition: background-color 0.33s $ease-out-bezier,
+                box-shadow 0.33s $ease-out-bezier,
+                transform 0.33s $ease-out-bezier;
 
     @media screen and (max-width: 700px) {
       .text {
