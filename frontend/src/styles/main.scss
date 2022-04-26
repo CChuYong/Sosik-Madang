@@ -1,4 +1,5 @@
-@import url("//cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap");
 
 * {
   font-family: "Pretendard", "Noto Sans CJK KR", "Noto Sans CJK", "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
@@ -7,7 +8,10 @@
   shape-rendering: geometricPrecision;
 }
 
-html, body {
+html, body, #app {
   width: 100%;
   height: 100%;
+
+  color: $body-foreground-color;
+  background-color: $body-background-color;
 }
