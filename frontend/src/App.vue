@@ -1,8 +1,6 @@
 <template>
   <navigation-bar />
 
-  <main-map />
-
   <div id="router-content">
     <router-view />
   </div>
@@ -10,13 +8,11 @@
 
 <script>
 import NavigationBar from "@/components/NavigationBar.vue";
-import MainMap from "@/components/MainMap.vue";
 
 export default {
   "name": "App",
   "components": {
     NavigationBar,
-    MainMap,
   },
 };
 </script>
