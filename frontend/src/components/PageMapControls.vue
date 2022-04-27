@@ -9,10 +9,16 @@
               class="button toggle"
               :class="{ active: type.filterActivated }"
               :style="{ backgroundColor: type.backgroundColor }"
-              @click="() => { type.filterActivated = !type.filterActivated; updateMap(); }">
+              @click="() => { type.filterActivated = !type.filterActivated; }">
           {{ type.typeName }}
         </span>
       </div>
+    </div>
+
+    <div class="control-container">
+      <div class="title">필터 옵션</div>
+
+      <div><input v-model="filterOptions" type="checkbox" value="filter_ratings_above_4"> <span>별점 4점 이상</span></div>
     </div>
   </div>
 </template>
@@ -89,14 +95,22 @@ export default {
           "filterActivated": false,
         },
       ],
+      filterOptions: [],
     };
+  },
+  watch: {
+    shopTypes: {
+      deep: true,
+      handler() { this.updateMap(); },
+    },
+    filterOptions() { this.updateMap(); },
   },
   methods: {
     getActivatedShopTypes() {
       return this.shopTypes.filter((x) => x.filterActivated).map((x) => x.slug);
     },
     updateMap() {
-      console.log(this.getActivatedShopTypes());
+      console.log("map update");
       // TODO
     },
   },
@@ -119,6 +133,9 @@ export default {
   .control-container {
     display: flex;
     flex-direction: column;
+    margin-top: 1.5rem;
+
+    &:first-child { margin-top: 0; }
 
     .title {
       text-align: center;
