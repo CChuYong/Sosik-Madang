@@ -7,7 +7,9 @@
         <span v-for="type in shopTypes"
               :key="type.slug"
               class="button toggle"
-              :style="{ backgroundColor: getButtonRandomColor() }">
+              :class="{ active: type.filterActivated }"
+              :style="{ backgroundColor: type.backgroundColor }"
+              @click="() => { type.filterActivated = !type.filterActivated; updateMap(); }">
           {{ type.typeName }}
         </span>
       </div>
@@ -18,37 +20,50 @@
 <script>
 import randomColor from "randomcolor";
 
+function getButtonRandomColor(hue) {
+  return randomColor({
+    hue,
+    luminosity: "dark",
+    alpha: 0.75,
+    format: "rgba",
+  });
+}
+
 export default {
   name: "PageMapControls",
-  computed: {
-    shopTypes() {
-      return [
+  data: () => {
+    return {
+      shopTypes: [
         {
           "slug": "korean",
           "typeName": "한식",
+          "backgroundColor": getButtonRandomColor("blue"),
+          "filterActivated": false,
         },
         {
           "slug": "japanese",
           "typeName": "일식",
+          "backgroundColor": getButtonRandomColor("red"),
+          "filterActivated": false,
         },
         {
           "slug": "chinese",
           "typeName": "중식",
+          "backgroundColor": getButtonRandomColor("orange"),
+          "filterActivated": false,
         },
         {
           "slug": "western",
           "typeName": "서양식",
+          "backgroundColor": getButtonRandomColor("green"),
+          "filterActivated": false,
         },
-      ];
-    },
+      ],
+    };
   },
   methods: {
-    getButtonRandomColor() {
-      return randomColor({
-        luminosity: "dark",
-        alpha: 0.75,
-        format: "rgba",
-      });
+    updateMap() {
+      // TODO
     },
   },
 };
