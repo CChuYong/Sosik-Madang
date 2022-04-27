@@ -58,11 +58,45 @@ export default {
           "backgroundColor": getButtonRandomColor("green"),
           "filterActivated": false,
         },
+        {
+          "slug": "vietnamese",
+          "typeName": "베트남식",
+          "backgroundColor": getButtonRandomColor("yellow"),
+          "filterActivated": false,
+        },
+        {
+          "slug": "cafe",
+          "typeName": "카페",
+          "backgroundColor": getButtonRandomColor("purple"),
+          "filterActivated": false,
+        },
+        {
+          "slug": "dessert",
+          "typeName": "디저트/빵",
+          "backgroundColor": getButtonRandomColor("pink"),
+          "filterActivated": false,
+        },
+        {
+          "slug": "fastfood",
+          "typeName": "패스트푸드",
+          "backgroundColor": getButtonRandomColor("red"),
+          "filterActivated": false,
+        },
+        {
+          "slug": "etc",
+          "typeName": "기타",
+          "backgroundColor": getButtonRandomColor("monochrome"),
+          "filterActivated": false,
+        },
       ],
     };
   },
   methods: {
+    getActivatedShopTypes() {
+      return this.shopTypes.filter((x) => x.filterActivated).map((x) => x.slug);
+    },
     updateMap() {
+      console.log(this.getActivatedShopTypes());
       // TODO
     },
   },
@@ -74,7 +108,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  width: 8rem;
+  width: 12rem;
   padding: 1rem;
   color: $body-background-color;
   background-color: rgba($body-foreground-color, 0.75);
@@ -110,12 +144,13 @@ export default {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      justify-content: space-between;
 
       & > .button {
         text-align: center;
-        width: calc(50% - 1rem);
-        padding: 0.33rem;
-        margin: 0.17rem;
+        width: calc(50% - 1.5rem);
+        padding: 0.45rem;
+        margin: 0.3rem;
       }
     }
   }

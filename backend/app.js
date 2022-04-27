@@ -20,5 +20,5 @@ app.use(require('connect-history-api-fallback')())
 //서버를 호스트하는 구문
 const port = process.env.PORT || 3000
 app.listen(port, ()=>{
-   console.log("SoSick-Madang 서버가 실행되었습니다. 포트 : " + port)
+   console.log("SOsik-MAdang 서버가 실행되었습니다. 포트 : " + port)
 });

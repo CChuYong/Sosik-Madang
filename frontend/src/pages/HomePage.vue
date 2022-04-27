@@ -21,6 +21,12 @@ export default {
 #map {
   width: 100%;
   height: 100%;
+
+  //temp
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lighten($body-background-color, 20%);
 }
 
 #map-controls {
