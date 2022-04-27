@@ -1,6 +1,9 @@
 <template>
   <nav id="nav" :class="{ 'before-mount': !isMounted }">
-    <span class="title"><strong>소</strong><span style="font-size: 0.95em">食</span><strong>마</strong><span>당</span></span>
+    <div class="nav-title">
+      <img class="logo" src="@/assets/icons/logo.svg" />
+      <span class="title"><strong style="color: #A3C4E9">소</strong><span style="font-size: 0.95em">食</span><strong style="color: #A3C4E9">마</strong><span>당</span></span>
+    </div>
 
     <div class="nav-icons" title="전체 맛집 목록 보기" @click="showAllShopsClick">
       <img class="icon" src="@/assets/icons/mdi-format-list-text-white.svg" />
@@ -54,18 +57,30 @@ export default {
     padding: $navbar-inner-padding-v $navbar-inner-padding-h-smallscreen;
   }
 
-  .title {
+  .nav-title {
     display: flex;
     align-items: center;
+    height: 100%;
 
-    font-size: 2em;
-    font-weight: 100;
+    .logo {
+      width: $navbar-height;
+      height: $navbar-height;
+      margin-right: 1em;
+    }
 
-    strong { font-weight: 700; }
+    .title {
+      display: flex;
+      align-items: center;
 
-    * { transition: transform 1s $ease-out-bezier, opacity 1s $ease-out-bezier; }
-    *:nth-child(even) { transform: translateY(0.2em); }
-    *:nth-child(odd) { transform: translateY(-0.2em); }
+      font-size: 2em;
+      font-weight: 100;
+
+      strong { font-weight: 700; }
+
+      * { transition: transform 1s $ease-out-bezier, opacity 1s $ease-out-bezier; }
+      *:nth-child(even) { transform: translateY(0.2em); }
+      *:nth-child(odd) { transform: translateY(-0.2em); }
+    }
   }
 
   .nav-icons {
@@ -109,10 +124,12 @@ export default {
   }
 
   &.before-mount {
-    .title {
-      * {
-        transform: translateY(0);
-        opacity: 0;
+    .nav-title {
+      .title {
+        * {
+          transform: translateY(0);
+          opacity: 0;
+        }
       }
     }
   }
