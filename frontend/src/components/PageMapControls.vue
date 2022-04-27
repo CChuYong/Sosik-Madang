@@ -92,7 +92,11 @@ export default {
     };
   },
   methods: {
+    getActivatedShopTypes() {
+      return this.shopTypes.filter((x) => x.filterActivated).map((x) => x.slug);
+    },
     updateMap() {
+      console.log(this.getActivatedShopTypes());
       // TODO
     },
   },
