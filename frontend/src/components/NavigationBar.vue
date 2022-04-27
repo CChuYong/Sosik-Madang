@@ -98,6 +98,8 @@ export default {
                 transform 0.33s $ease-out-bezier;
 
     @media screen and (max-width: 700px) {
+      padding: 0.5em;
+
       .text {
         display: none;
       }
