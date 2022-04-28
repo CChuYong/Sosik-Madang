@@ -2,7 +2,7 @@
   <nav id="nav" :class="{ 'before-mount': !isMounted }">
     <div class="nav-title">
       <img class="logo" src="@/assets/icons/logo.svg" />
-      <span class="title"><strong style="color: #A3C4E9">소</strong><span style="font-size: 0.95em">食</span><strong style="color: #A3C4E9">마</strong><span>당</span></span>
+      <span class="title"><strong class="accent">소</strong><span style="font-size: 0.95em">食</span><strong class="accent">마</strong><span>당</span></span>
     </div>
 
     <div class="nav-icons" title="전체 맛집 목록 보기" @click="showAllShopsClick">
@@ -82,6 +82,8 @@ export default {
       *:nth-child(even) { transform: translateY(0.2em); }
       *:nth-child(odd) { transform: translateY(-0.2em); }
     }
+
+    .accent { color: $body-accent-color; }
   }
 
   .nav-icons {
