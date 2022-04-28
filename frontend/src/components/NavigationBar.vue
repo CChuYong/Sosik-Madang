@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     showAllShopsClick() {
-      // TODO
+      this.$store.commit("shopListFlyoutShown", !this.$store.state.shopListFlyoutShown);
     },
   },
   mounted() {

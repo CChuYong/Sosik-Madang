@@ -1,18 +1,26 @@
 <template>
   <main-map id="map" />
 
+  <shop-list-flyout id="shop-list-flyout" :show="$store.state.shopListFlyoutShown" />
   <page-map-controls id="map-controls" />
 </template>
 
 <script>
 import MainMap from "@/components/MainMap.vue";
 import PageMapControls from "@/components/PageMapControls.vue";
+import ShopListFlyout from "@/components/ShopListFlyout.vue";
 
 export default {
   name: "HomePage",
   components: {
     MainMap,
     PageMapControls,
+    ShopListFlyout,
+  },
+  data() {
+    return {
+      shopListFlyoutShown: false,
+    };
   },
 };
 </script>
