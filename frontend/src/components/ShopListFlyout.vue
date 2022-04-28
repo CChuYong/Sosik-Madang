@@ -34,7 +34,8 @@ export default {
   z-index: 10000;
 
   color: $body-background-color;
-  background-color: $body-foreground-color;
+  background-color: rgba($body-foreground-color, 0.85);
+  backdrop-filter: blur(0.5rem);
   box-shadow: 0 0 2rem rgba($body-background-color, 0.5);
 
   transform: translateX(120%);
@@ -70,7 +71,7 @@ export default {
       transition: background-color 0.15s;
 
       &:hover {
-        background-color: $body-accent-color;
+        background-color: rgba($body-accent-color, 0.75);
       }
 
       .name {
