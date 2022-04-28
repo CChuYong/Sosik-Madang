@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import HomePage from "@/pages/HomePage.vue";
+import ShopInfoDialog from "@/pages/ShopInfoDialog.vue";
 
 const routes = [
   {
     path: "/",
-    name: "home",
     component: HomePage,
+    children: [
+      {
+        path: "info/:id",
+        component: ShopInfoDialog,
+      },
+    ],
   },
 ];
 

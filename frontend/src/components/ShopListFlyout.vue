@@ -3,7 +3,8 @@
     <ul class="shop-list-parent">
       <li v-for="shop in $store.state.shopListAll"
           :key="shop.id"
-          class="shop-list-item">
+          class="shop-list-item"
+          @click="shopItemClick(shop)">
         <div class="name">{{ shop.name }}</div>
       </li>
 
@@ -17,6 +18,11 @@ export default {
   name: "ShopListFlyout",
   props: {
     show: Boolean,
+  },
+  methods: {
+    shopItemClick(shopItem) {
+      this.$router.push(`/info/${shopItem.id}`);
+    },
   },
 };
 </script>

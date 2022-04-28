@@ -3,6 +3,10 @@
 
   <shop-list-flyout id="shop-list-flyout" :show="$store.state.shopListFlyoutShown" />
   <page-map-controls id="map-controls" />
+
+  <div id="shop-info-dialog-container">
+    <router-view />
+  </div>
 </template>
 
 <script>
