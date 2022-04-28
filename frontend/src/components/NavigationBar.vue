@@ -46,6 +46,7 @@ export default {
   top: 0;
   height: $navbar-height;
   padding: $navbar-inner-padding-v $navbar-inner-padding-h;
+  z-index: 99999;
 
   background-color: rgba($body-background-color, 0.75);
   box-shadow: 0 0.05rem 0.66rem rgba($body-background-color, 0.5);
