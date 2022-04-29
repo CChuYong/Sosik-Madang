@@ -1,5 +1,5 @@
 # 서버를 구동할 Node.JS 버전을 설정합니다.
-ARG BASE_IMAGE=node:18-alpine3.14
+ARG BASE_IMAGE=node:17-alpine3.14
 FROM ${BASE_IMAGE}
 
 LABEL maintainer="swm.elice.io"
@@ -10,10 +10,10 @@ COPY . .
 
 # Vue.JS를 빌드합니다
 WORKDIR /app/frontend
-RUN npm install -g yarn @vue/cli \
-    yarn install --frozen-lockfile \
-    yarn build \
-    cp ./dist/* /app/backend/public/
+RUN npm install --force -g yarn @vue/cli \
+    && yarn install --frozen-lockfile \
+    && yarn build \
+    && cp -a ./dist/. /app/backend/public/
 
 # Node.JS 관련 모듈을 설치합니다.
 WORKDIR /app/backend/
