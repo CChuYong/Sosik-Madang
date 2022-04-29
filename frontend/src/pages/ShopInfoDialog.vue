@@ -5,6 +5,11 @@
         <span class="title">{{ shopInfo.name }}</span>
         <a class="close" @click="$router.back()"><img src="@/assets/icons/mdi-close-black.svg" alt="가게 정보 창 닫기" /></a>
       </div>
+
+      <p>리뷰 {{ shopInfo.reviewCount }}개</p>
+      <p>별점 {{ shopInfo.rating }}점</p>
+      <p>식당 종류 : {{ shopInfo.type }}</p>
+      <p>위도 {{ shopInfo.location.lat }}도, 경도 {{ shopInfo.location.lng }}도</p>
     </div>
   </div>
 </template>
