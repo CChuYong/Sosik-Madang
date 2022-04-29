@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../../../controller/shopreview.controller');
+const PipelineError = require("../../../util/PipelineError");
 
 router.put('/', async (req, res, next) => {
     try{
@@ -12,7 +13,8 @@ router.put('/', async (req, res, next) => {
     }catch(err){
         console.log(err);
         res.status(500).send({
-            "success": "failed"
+            "success": "failed",
+            message: err instanceof PipelineError ? err.message : "unknown"
         })
     }
 })
@@ -23,7 +25,7 @@ router.get('/', async (req, res, next) => {
         res.status(200).send(rows);
     }catch(err){
         res.status(500).send({
-            message: "unexpected error has occured"
+            message: err instanceof PipelineError ? err.message : "unknown"
         })
     }
 })
@@ -35,7 +37,7 @@ router.get('/:id', async (req, res, next) => {
         res.status(200).send(rows[0]);
     }catch(err){
         res.status(500).send({
-            message: "unexpected error has occured"
+            message: err instanceof PipelineError ? err.message : "unknown"
         })
     }
 })

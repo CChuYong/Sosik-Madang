@@ -9,6 +9,7 @@ WORKDIR /app/
 COPY . .
 
 # Vue.JS를 빌드합니다
+ENV VUE_APP_API_HOST=https://sosick.shop/api
 WORKDIR /app/frontend
 RUN npm install --force -g yarn @vue/cli \
     && yarn install --frozen-lockfile \
