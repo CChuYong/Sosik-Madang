@@ -1,16 +1,49 @@
 <template>
   <div class="dialog">
     <div class="dialog-inner">
-      DIALOG HERE!
-
-      <a @click="$router.back()">닫기</a>
+      <div class="title-area">
+        <span class="title">{{ shopInfo.name }}</span>
+        <a class="close" @click="$router.back()"><img src="@/assets/icons/mdi-close-black.svg" alt="가게 정보 창 닫기" /></a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import API from "@/functions/apiutils";
+
 export default {
   name: "ShopInfoDialog",
+  data() {
+    return {
+      shopInfo: {
+        name: "[placeholder]",
+        type: "[placeholder]",
+        reviewCount: -1,
+        rating: -1,
+        location: {
+          lat: -1,
+          lng: -1,
+        },
+      },
+    };
+  },
+  async mounted() {
+    const shopData = await API.apiGet(`/shops/info/${this.$route.params.id}`);
+
+    this.$data.shopInfo = {
+      name: shopData.name,
+      type: shopData.type,
+      reviewCount: shopData.reviewCount,
+      rating: shopData.rating,
+      location: {
+        lat: shopData["location_lat"],
+        lng: shopData["location_lng"],
+      },
+    };
+
+    console.log(this.$data.shopInfo);
+  },
 };
 </script>
 
@@ -38,6 +71,46 @@ a {
 
   &-inner {
     position: relative;
+    min-width: 33vw;
+    max-width: 100%;
+    padding: 2rem;
+
+    border-radius: 0.5rem;
+    color: $body-background-color;
+    background-color: rgba($body-foreground-color, 0.9);
+    box-shadow: 0 1rem 2rem rgba($body-background-color, 0.66);
+    backdrop-filter: blur(2px);
+
+    .title-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5em;
+
+      .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 700;
+      }
+
+      .close {
+        display: flex;
+        align-items: center;
+
+        margin-left: 1rem;
+
+        img {
+          height: 100%;
+          padding: 0.25rem;
+
+          &:hover {
+            background-color: rgba($body-background-color, 0.25);
+            border-radius: 65536rem;
+          }
+        }
+      }
+    }
   }
 }
 </style>
