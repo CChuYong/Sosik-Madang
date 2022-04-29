@@ -54,7 +54,7 @@ export default {
 
   transition: background-color 0.5s;
 
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: $media-small-width) {
     padding: $navbar-inner-padding-v $navbar-inner-padding-h-smallscreen;
   }
 
