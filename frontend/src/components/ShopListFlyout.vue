@@ -33,8 +33,8 @@ export default {
   bottom: 0;
   overflow: auto;
   padding-top: $navbar-height + ($navbar-inner-padding-v * 2);
-  width: 25vw;
-  min-width: 20rem;
+  width: 25rem;
+  max-width: 100%;
   z-index: 10000;
 
   color: $body-background-color;
