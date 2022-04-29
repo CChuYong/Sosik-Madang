@@ -22,7 +22,7 @@
         <span class="check-toggle"
               :class="{ checked: filterOptions.filterRatingAbove4 }"
               @click="filterOptions.filterRatingAbove4 = !filterOptions.filterRatingAbove4">
-          <span class="mark">{{ filterOptions.filterRatingAbove4 ? "✓" : "✕" }}</span>
+          <span class="mark">{{ filterOptions.filterRatingAbove4 ? "☑" : "☐" }}</span>
           <span>별점 4점 이상</span>
         </span>
       </div>
