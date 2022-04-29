@@ -10,15 +10,24 @@
       <p>별점 {{ shopInfo.rating }}점</p>
       <p>식당 종류 : {{ shopInfo.type }}</p>
       <p>위도 {{ shopInfo.location.lat }}도, 경도 {{ shopInfo.location.lng }}도</p>
+
+      <star-rating v-model:rating="reviewRating" :increment="0.5" />
+      <input v-model="reviewWriter" type="text" placeholder="리뷰 작성자">
+      <input v-model="reviewText" type="text" placeholder="리뷰 내용...">
+      <input type="button" value="리뷰 남기기" @click="onLeaveReviewButtonClick" :disabled="reviewText.length <= 0 || reviewWriter.length <= 0">
     </div>
   </div>
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
 import API from "@/functions/apiutils";
 
 export default {
   name: "ShopInfoDialog",
+  components: {
+    StarRating,
+  },
   data() {
     return {
       shopInfo: {
@@ -31,9 +40,23 @@ export default {
           lng: -1,
         },
       },
+      reviewWriter: "",
+      reviewText: "",
+      reviewRating: 5,
     };
   },
+  methods: {
+    async onLeaveReviewButtonClick() {
+      await API.apiPut("/shops/reviews", {
+        "shop_id": parseInt(this.$route.params.id),
+        "writer": this.$data.reviewWriter,
+        "rating": parseFloat(this.$data.reviewRating),
+        "content": this.$data.reviewText,
+      });
+    },
+  },
   async mounted() {
+    /* get shop info */
     const shopData = await API.apiGet(`/shops/info/${this.$route.params.id}`);
 
     this.$data.shopInfo = {
@@ -46,8 +69,7 @@ export default {
         lng: shopData["location_lng"],
       },
     };
-
-    console.log(this.$data.shopInfo);
+    /* === */
   },
 };
 </script>
