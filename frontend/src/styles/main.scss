@@ -20,6 +20,7 @@ html, body, #app {
 .dialog.dialog-enter-active,
 .dialog.dialog-leave-active {
   transition: background-color 0.5s, backdrop-filter 0.5s;
+  will-change: backdrop-filter;
 }
 
 .dialog.dialog-enter-active {
