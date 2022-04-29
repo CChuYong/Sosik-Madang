@@ -69,9 +69,21 @@ a {
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
 
+  @media screen and (max-width: $media-small-width) {
+    display: block;
+
+    &-inner {
+      box-sizing: border-box;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 0 !important;
+    }
+  }
+
   &-inner {
     position: relative;
-    min-width: 33vw;
+    min-width: 300px;
+    width: 33vw;
     max-width: 100%;
     padding: 2rem;
 
@@ -92,6 +104,7 @@ a {
         text-overflow: ellipsis;
         white-space: nowrap;
         font-weight: 700;
+        font-size: 1.25em;
       }
 
       .close {

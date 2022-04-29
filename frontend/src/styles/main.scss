@@ -25,13 +25,13 @@ html, body, #app {
 
 .dialog.dialog-enter-active {
   .dialog-inner {
-    transition: transform 0.45s $ease-out-exp-bezier;
+    transition: transform 0.5s $ease-out-exp-bezier;
   }
 }
 
 .dialog.dialog-leave-active {
   .dialog-inner {
-    transition: transform 0.9s $ease-out-bezier;
+    transition: transform 1s $ease-out-bezier;
   }
 }
 
@@ -41,7 +41,7 @@ html, body, #app {
   backdrop-filter: none;
   
   .dialog-inner {
-    transform: translateY(100vh);
+    transform: translateY(120vh);
   }
 }
 /* */
