@@ -39,6 +39,7 @@ html, body, #app {
 .dialog.dialog-leave-to {
   background-color: transparent;
   backdrop-filter: none;
+  pointer-events: none;
   
   .dialog-inner {
     transform: translateY(120vh);
