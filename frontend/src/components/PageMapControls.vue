@@ -183,7 +183,7 @@ export default {
     .check-toggle {
       position: relative;
       cursor: pointer;
-      padding: 0.1em 0.1em;
+      padding: 0.15em 0.15em;
       transition: color 0.33s, padding 0.33s $ease-out-bezier;
 
       .mark {
@@ -199,6 +199,7 @@ export default {
         right: 0;
         height: 0;
         background-color: rgba($body-background-color, 0.5);
+        border-radius: 0.25em;
         z-index: -1;
 
         transition: background-color 0.33s, height 0.33s $ease-out-bezier;
@@ -206,7 +207,7 @@ export default {
 
       &:hover, &.checked {
         color: $body-foreground-color;
-        padding: 0.1em 0.33em;
+        padding: 0.15em 0.5em;
 
         &::before {
           height: 100%;
