@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     async onLeaveReviewButtonClick() {
+      // TODO: send data using form-urlencoded (`qs` library => `qs.stringify()`)
       await API.apiPut("/shops/reviews", {
         "shop_id": parseInt(this.$route.params.id),
         "writer": this.$data.reviewWriter,
