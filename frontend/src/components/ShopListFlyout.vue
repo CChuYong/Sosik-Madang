@@ -7,8 +7,6 @@
           @click="shopItemClick(shop)">
         <div class="name">{{ shop.name }}</div>
       </li>
-
-      <li v-for="_ in [1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]" :key="_" class="shop-list-item">howdy</li>
     </ul>
   </div>
 </template>
