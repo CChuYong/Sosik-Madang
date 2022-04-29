@@ -18,7 +18,14 @@
     <div class="control-container">
       <div class="title">필터 옵션</div>
 
-      <div><input v-model="filterOptions" type="checkbox" value="filter_ratings_above_4"> <span>별점 4점 이상</span></div>
+      <div>
+        <span class="check-toggle"
+              :class="{ checked: filterOptions.filterRatingAbove4 }"
+              @click="filterOptions.filterRatingAbove4 = !filterOptions.filterRatingAbove4">
+          <span class="mark">{{ filterOptions.filterRatingAbove4 ? "✓" : "✕" }}</span>
+          <span>별점 4점 이상</span>
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -95,7 +102,9 @@ export default {
           "filterActivated": false,
         },
       ],
-      filterOptions: [],
+      filterOptions: {
+        filterRatingAbove4: false,
+      },
     };
   },
   watch: {
@@ -168,6 +177,44 @@ export default {
         width: calc(50% - 1.5rem);
         padding: 0.45rem;
         margin: 0.3rem;
+      }
+    }
+
+    .check-toggle {
+      position: relative;
+      cursor: pointer;
+      padding: 0.1em 0.1em;
+      transition: color 0.33s, padding 0.33s $ease-out-bezier;
+
+      .mark {
+        font-weight: 900;
+        margin-right: 0.5em;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 0;
+        background-color: rgba($body-background-color, 0.5);
+        z-index: -1;
+
+        transition: background-color 0.33s, height 0.33s $ease-out-bezier;
+      }
+
+      &:hover, &.checked {
+        color: $body-foreground-color;
+        padding: 0.1em 0.33em;
+
+        &::before {
+          height: 100%;
+        }
+      }
+
+      &.checked::before {
+        background-color: rgba($body-background-color, 0.8) !important;
       }
     }
   }
