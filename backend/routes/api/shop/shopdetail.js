@@ -40,9 +40,11 @@ router.get('/:id', async (req, res, next) => {
         const data = infos[0]
         if(rows.length > 0){
             Object.assign(data, rows[0])
+            delete data.shop_id
         }
         res.status(200).send(data);
     }catch(err){
+        console.log(err);
         res.status(500).send({
             message: err instanceof PipelineError ? err.message : "unknown"
         })
