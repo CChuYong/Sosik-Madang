@@ -7,16 +7,16 @@ exports.create = (shopinfo)=>{
     if(!shopinfo.shop_id){
         throw new PipelineError("상점 ID가 입력되지 않았습니다");
     }
-    return db.query('INSERT INTO shop_info SET ?', [shopinfo]);
+    return db.query('INSERT INTO shop_detail SET ?', [shopinfo]);
 }
 
 exports.getById = (id) => {
     if(isNaN(id)){
         throw new PipelineError("숫자만 입력할 수 있습니다.");
     }
-    return db.query('SELECT * FROM shop_info WHERE id = ?', [id]);
+    return db.query('SELECT * FROM shop_detail WHERE id = ?', [id]);
 }
 
 exports.getAll = () => {
-    return db.query('SELECT * FROM shop_info');
+    return db.query('SELECT * FROM shop_detail');
 }

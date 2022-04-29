@@ -14,7 +14,7 @@
 설치 이전에 MySQL 서버 및 Docker이 설치된 환경이 필요합니다.
 
 ```
-sudo docker run -p 80:3030 sosickmadang 
+sudo docker run -it -p80:3030 sosickmadang
 ```
 ### 환경변수
 -e \<NAME> = \<VALUE> 형식으로 작성하여 환경 변수를 입력하거나, --env-file \<FILENAME> 형식으로 환경변수 파일을 만들어서 도커 컨테이너에 제공할 수 있습니다.
