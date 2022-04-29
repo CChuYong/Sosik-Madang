@@ -82,16 +82,15 @@ a {
 
   &-inner {
     position: relative;
-    min-width: 300px;
+    min-width: 280px;
     width: 33vw;
     max-width: 100%;
     padding: 2rem;
 
     border-radius: 0.5rem;
     color: $body-background-color;
-    background-color: rgba($body-foreground-color, 0.9);
+    background-color: rgba($body-foreground-color, 0.95);
     box-shadow: 0 1rem 2rem rgba($body-background-color, 0.66);
-    backdrop-filter: blur(2px);
 
     .title-area {
       display: flex;
