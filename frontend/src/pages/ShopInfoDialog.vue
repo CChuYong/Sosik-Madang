@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog">
+  <div class="dialog" @click.stop.prevent.self.once="$router.back()">
     <div class="dialog-inner">
       <div class="title-area">
         <span class="title">{{ shopInfo.name }}</span>
