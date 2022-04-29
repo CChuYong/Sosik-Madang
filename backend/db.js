@@ -6,9 +6,5 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE
 })
 
-
-// connection.connect(err=>{
-//     if(err) throw err;
-// })
 console.log("DB LOAD");
 module.exports = pool;

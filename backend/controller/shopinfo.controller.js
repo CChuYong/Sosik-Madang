@@ -4,6 +4,9 @@ db.query('CREATE TABLE IF NOT EXISTS shop_info(id INT PRIMARY KEY AUTO_INCREMENT
 
 //TODO: Preconditions 추가. 필요없는 필드가 있다던지, 길이넘는 필드가 있다던지..etc
 exports.create = (shopinfo)=>{
+    if(shopinfo.name.length > 36){
+        throw new Error();
+    }
     return db.query('INSERT INTO shop_info SET ?', [shopinfo]);
 }
 

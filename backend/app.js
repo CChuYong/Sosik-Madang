@@ -13,7 +13,8 @@ app.use('/api/shops/reviews', shopReview);
 
 //FrontEnd 렌더링을 위한 부분
 const index = require('./routes/index');
-app.use('/', index);
+app.use(express.static(__dirname + '/public'));
+app.get('/', index);
 app.use(require('connect-history-api-fallback')())
 
 
