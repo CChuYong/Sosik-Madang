@@ -17,8 +17,8 @@ export default {
   data() {
     return {
       shopInfo: {
-        name: "[placeholder]",
-        type: "[placeholder]",
+        name: "불러오는 중...",
+        type: "",
         reviewCount: -1,
         rating: -1,
         location: {
@@ -98,6 +98,10 @@ a {
       justify-content: space-between;
       align-items: center;
       font-size: 1.5em;
+
+      padding: 0 0.5rem 1rem 0.5rem;
+      border-bottom: solid 1px $body-background-color;
+      margin-bottom: 1rem;
 
       .title {
         overflow: hidden;
