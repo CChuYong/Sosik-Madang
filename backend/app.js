@@ -7,9 +7,10 @@ require('dotenv').config();
 //API 라우팅을 위한 부분
 const shopInfo = require('./routes/api/shop/shopinfo');
 const shopReview = require('./routes/api/shop/shopreview');
+const shopDetail = require('./routes/api/shop/shopdetail');
 app.use('/api/shops/info', shopInfo);
 app.use('/api/shops/reviews', shopReview);
-
+app.use('/api/shops/detail', shopDetail)
 
 //FrontEnd 렌더링을 위한 부분
 const index = require('./routes/index');
