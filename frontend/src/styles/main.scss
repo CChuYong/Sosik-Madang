@@ -15,3 +15,32 @@ html, body, #app {
   color: $body-foreground-color;
   background-color: $body-background-color;
 }
+
+/* dialog route transition */
+.dialog.dialog-enter-active,
+.dialog.dialog-leave-active {
+  transition: background-color 0.5s, backdrop-filter 0.5s;
+}
+
+.dialog.dialog-enter-active {
+  .dialog-inner {
+    transition: transform 0.45s $ease-out-exp-bezier;
+  }
+}
+
+.dialog.dialog-leave-active {
+  .dialog-inner {
+    transition: transform 0.9s $ease-out-bezier;
+  }
+}
+
+.dialog.dialog-enter-from,
+.dialog.dialog-leave-to {
+  background-color: transparent;
+  backdrop-filter: none;
+  
+  .dialog-inner {
+    transform: translateY(100vh);
+  }
+}
+/* */

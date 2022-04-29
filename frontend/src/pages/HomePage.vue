@@ -5,7 +5,11 @@
   <page-map-controls id="map-controls" />
 
   <div id="shop-info-dialog-container">
-    <router-view />
+    <router-view v-slot="{ Component, route }">
+      <transition name="dialog">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
