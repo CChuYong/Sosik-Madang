@@ -4,7 +4,7 @@
       <div class="title">식당 분류</div>
 
       <div class="toggle-button-container">
-        <span v-for="type in shopTypes"
+        <span v-for="type in $store.state.shopTypes"
               :key="type.slug"
               class="button toggle"
               :class="{ active: type.filterActivated }"
@@ -31,77 +31,10 @@
 </template>
 
 <script>
-import randomColor from "randomcolor";
-
-function getButtonRandomColor(hue) {
-  return randomColor({
-    hue,
-    luminosity: "dark",
-    alpha: 0.75,
-    format: "rgba",
-  });
-}
-
 export default {
   name: "PageMapControls",
   data: () => {
     return {
-      shopTypes: [
-        {
-          "slug": "korean",
-          "typeName": "한식",
-          "backgroundColor": getButtonRandomColor("blue"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "japanese",
-          "typeName": "일식",
-          "backgroundColor": getButtonRandomColor("red"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "chinese",
-          "typeName": "중식",
-          "backgroundColor": getButtonRandomColor("orange"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "western",
-          "typeName": "서양식",
-          "backgroundColor": getButtonRandomColor("green"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "vietnamese",
-          "typeName": "베트남식",
-          "backgroundColor": getButtonRandomColor("yellow"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "cafe",
-          "typeName": "카페",
-          "backgroundColor": getButtonRandomColor("purple"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "dessert",
-          "typeName": "디저트/빵",
-          "backgroundColor": getButtonRandomColor("pink"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "fastfood",
-          "typeName": "패스트푸드",
-          "backgroundColor": getButtonRandomColor("red"),
-          "filterActivated": false,
-        },
-        {
-          "slug": "etc",
-          "typeName": "기타",
-          "backgroundColor": getButtonRandomColor("monochrome"),
-          "filterActivated": false,
-        },
-      ],
       filterOptions: {
         filterRatingAbove4: false,
       },
@@ -150,7 +83,7 @@ export default {
       text-align: center;
       font-size: 1.25em;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
 
     .button {
