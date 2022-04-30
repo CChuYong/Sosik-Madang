@@ -38,6 +38,7 @@
       </table>
 
       <div class="leave-review-container">
+        <div class="please-review-text"><strong>리뷰를 남겨주세요!</strong> 리뷰 하나하나가 다른 연수생의 한 끼를 결정하는 데에 큰 도움이 됩니다.</div>
         <star-rating v-model:rating="reviewRating" :increment="0.5" />
 
         <div>
@@ -48,9 +49,12 @@
         <input type="button" value="리뷰 남기기" @click="onLeaveReviewButtonClick" :disabled="reviewText.length <= 0 || reviewWriter.length <= 0">
       </div>
 
-      <div id="reviews">
-
-      </div>
+      <ul class="reviews-container">
+        <li v-for="review in reviews"
+            :key="review.id">
+          {{ review.content }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -164,18 +168,21 @@ a {
     display: block;
 
     &-inner {
-      box-sizing: border-box;
       width: 100% !important;
       height: 100% !important;
+      max-height: initial !important;
       border-radius: 0 !important;
     }
   }
 
   &-inner {
+    box-sizing: border-box;
+    overflow: auto;
     position: relative;
-    min-width: 280px;
-    width: 33vw;
+    min-width: 450px;
+    width: 40vw;
     max-width: 100%;
+    max-height: 95vh;
     padding: 2rem;
 
     border-radius: 0.5rem;
@@ -255,6 +262,23 @@ a {
     .leave-review-container {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      margin-top: 1rem;
+      padding: 1rem 0;
+      
+      border-top: solid 1px $body-background-color;
+      border-bottom: solid 1px $body-background-color;
+
+      .please-review-text {
+        font-weight: 300;
+        font-size: 1.1em;
+        margin-bottom: 0.5em;
+        padding: 0 0.5em;
+
+        strong {
+          font-weight: 700;
+        }
+      }
     }
   }
 }
