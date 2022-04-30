@@ -18,6 +18,11 @@ export default {
   async mounted() {
     // Register shop list on app startup
     this.$store.commit("shopListAll", await API.apiGet("/shops/info"));
+
+    // Insert KakaoMap API script
+    const kakaoMapScript = document.createElement("script");
+    kakaoMapScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.VUE_APP_KAKAOMAP_TOKEN}`;
+    document.head.appendChild(kakaoMapScript);
   },
 };
 </script>
