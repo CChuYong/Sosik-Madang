@@ -35,6 +35,7 @@ export default {
         center: new window.kakao.maps.LatLng(somaCenterPosition.lat, somaCenterPosition.lng),  // 소마센터
         level: 2,
       });
+      mapInstance.setMaxLevel(3);
 
       /* 소마센터 마커 */
       const marker = addMarker(mapInstance, somaCenterPosition.lat, somaCenterPosition.lng,
