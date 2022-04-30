@@ -10,3 +10,6 @@ jspm_packages/
 
 # FE/BE 연동 관련 빌드파일
 BackEnd/public/
+
+# macOS specific
+.DS_Store

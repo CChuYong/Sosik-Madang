@@ -6,20 +6,39 @@
           class="shop-list-item"
           @click="shopItemClick(shop)">
         <div class="name">{{ shop.name }}</div>
+        <div class="rating-reviews">
+          <div class="type"
+               :style="{ backgroundColor: getShopTypeBackgroundColor(shop.type) }">{{ shop.type }}</div>
+          <star-rating :read-only="true"
+                       :rating="shop.rating"
+                       :show-rating="false"
+                       :star-size="24" />
+          <span class="review-count">({{ shop.reviewCount }})</span>
+        </div>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
+
 export default {
   name: "ShopListFlyout",
+  components: {
+    StarRating,
+  },
   props: {
     show: Boolean,
   },
   methods: {
     shopItemClick(shopItem) {
       this.$router.push(`/info/${shopItem.id}`);
+    },
+    getShopTypeBackgroundColor(type) {
+      // Assume `type` is an ordinal type name (shopTypes.typeName)
+
+      return this.$store.state.shopTypes.find((x) => x.typeName === type).backgroundColor;
     },
   },
 };
@@ -79,8 +98,25 @@ export default {
       }
 
       .name {
-        font-size: 2em;
+        font-size: 1.66em;
         font-weight: 700;
+        margin-bottom: 0.33em;
+      }
+
+      .rating-reviews {
+        display: flex;
+        align-items: center;
+
+        .type {
+          padding: 0.25em 0.5em;
+          margin-right: 0.75em;
+          color: $body-foreground-color;
+          border-radius: 0.25em;
+        }
+
+        .review-count {
+          margin-left: 0.25em;
+        }
       }
     }
   }
