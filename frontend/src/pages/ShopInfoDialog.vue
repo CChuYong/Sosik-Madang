@@ -179,6 +179,7 @@ a {
     display: block;
 
     &-inner {
+      min-width: initial !important;
       width: 100% !important;
       height: 100% !important;
       max-height: initial !important;
