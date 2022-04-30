@@ -206,6 +206,7 @@ a {
 
       & > * {
         margin: 0 0.33em;
+        word-break: keep-all;
       }
     }
 
