@@ -177,7 +177,7 @@ a {
 
   &-inner {
     box-sizing: border-box;
-    overflow: auto;
+    overflow: overlay;
     position: relative;
     min-width: 450px;
     width: 40vw;
@@ -189,6 +189,20 @@ a {
     color: $body-background-color;
     background-color: rgba($body-foreground-color, 0.95);
     box-shadow: 0 1rem 2rem rgba($body-background-color, 0.66);
+
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+      height: 95%;
+
+      &-thumb {
+        border: 0.3rem solid rgba(0, 0, 0, 0);
+        border-top-width: 0.4rem;
+        border-bottom-width: 0.4rem;
+
+        background: $body-background-color;
+        background-clip: padding-box;
+      }
+    }
 
     .title-area {
       display: flex;

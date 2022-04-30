@@ -68,7 +68,6 @@ export default {
 
   &::-webkit-scrollbar {
     width: 0.33rem;
-    background: $body-foreground-color;
   }
   &::-webkit-scrollbar-thumb {
     background: $body-background-color;
