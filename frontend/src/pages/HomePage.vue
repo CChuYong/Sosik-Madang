@@ -1,5 +1,5 @@
 <template>
-  <main-map id="map" />
+  <main-map />
 
   <shop-list-flyout id="shop-list-flyout" :show="$store.state.shopListFlyoutShown" />
   <page-map-controls id="map-controls" />
