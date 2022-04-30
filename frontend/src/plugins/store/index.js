@@ -70,6 +70,7 @@ export default createStore({
       },
     ],
     shopListAll: [],
+    shopMarkersAll: [],
     shopListFlyoutShown: false,
   },
   mutations: {
@@ -81,6 +82,9 @@ export default createStore({
     },
     shopListAll(state, list) {
       state.shopListAll = list;
+    },
+    shopMarkersAll(state, list) {
+      state.shopMarkersAll = list;
     },
     shopListFlyoutShown(state, bool) {
       state.shopListFlyoutShown = bool;

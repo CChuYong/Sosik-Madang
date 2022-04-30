@@ -52,9 +52,21 @@ export default {
       this.registerAllShopsMarker();
     },
     registerAllShopsMarker() {
+      const markers = [];
       this.$store.state.shopListAll.forEach((shop) => {
-        addMarker(this.$store.state.mapInstance, shop["location_lat"], shop["location_lng"]);
+        const marker = addMarker(this.$store.state.mapInstance, shop["location_lat"], shop["location_lng"]);
+
+        window.kakao.maps.event.addListener(marker, "click", () => {
+          this.$store.state.mapInstance.panTo(marker.getPosition());
+        });
+
+        markers.push({
+          id: shop.id,
+          marker,
+        });
       });
+
+      this.$store.commit("shopMarkersAll", markers);
     },
   },
   mounted() {
