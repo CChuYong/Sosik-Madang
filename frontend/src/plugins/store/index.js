@@ -78,6 +78,6 @@ export default createStore({
     },
     shopListFlyoutShown(state, bool) {
       state.shopListFlyoutShown = bool;
-    }
+    },
   },
 });
