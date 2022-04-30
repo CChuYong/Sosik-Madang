@@ -72,6 +72,8 @@ export default createStore({
     shopListAll: [],
     shopMarkersAll: [],
     shopListFlyoutShown: false,
+
+    reviewWriter: "",
   },
   mutations: {
     mapInstance(state, instance) {
@@ -88,6 +90,10 @@ export default createStore({
     },
     shopListFlyoutShown(state, bool) {
       state.shopListFlyoutShown = bool;
+    },
+
+    reviewWriter(state, str) {
+      state.reviewWriter = str;
     },
   },
 });

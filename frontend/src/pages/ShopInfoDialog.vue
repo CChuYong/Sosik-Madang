@@ -46,13 +46,15 @@
         </div>
         <input v-model="reviewText" type="text" placeholder="리뷰 내용...">
 
-        <input type="button" value="리뷰 남기기" @click="onLeaveReviewButtonClick" :disabled="reviewText.length <= 0 || reviewWriter.length <= 0">
+        <input type="button" :value="reviewSending ? '리뷰 전송 중...' : '리뷰 남기기'" @click="onLeaveReviewButtonClick" :disabled="reviewSending || (reviewText.length <= 0 || reviewWriter.length <= 0)">
       </div>
 
       <ul class="reviews-container">
         <li v-for="review in reviews"
             :key="review.id">
+          {{ review.writer }}
           {{ review.content }}
+          {{ review.rating }}
         </li>
       </ul>
     </div>
@@ -84,19 +86,28 @@ export default {
         menus: [],
       },
       reviews: [],
-      reviewWriter: "",
       reviewText: "",
       reviewRating: 5,
+      reviewSending: false,
     };
+  },
+  computed: {
+    reviewWriter: {
+      get() { return this.$store.state.reviewWriter; },
+      set(value) { this.$store.commit("reviewWriter", value); },
+    },
   },
   methods: {
     async onLeaveReviewButtonClick() {
+      this.reviewSending = true;
       await API.apiPut("/shops/reviews", {
         "shop_id": parseInt(this.$route.params.id),
         "writer": this.$data.reviewWriter,
         "rating": parseFloat(this.$data.reviewRating),
         "content": this.$data.reviewText,
       });
+      this.reviewSending = false;
+      this.reviewText = "";
     },
     formatCurrency(num) {
       if(!isNaN(num)) {
