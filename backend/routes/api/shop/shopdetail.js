@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../../../controller/shopdetail.controller');
 const infoController = require('../../../controller/shopinfo.controller');
+const menuController = require('../../../controller/shopmenu.controller');
 const PipelineError = require("../../../util/PipelineError");
 
 router.put('/', async (req, res, next) => {
@@ -37,11 +38,13 @@ router.get('/:id', async (req, res, next) => {
     try{
         const [rows] = await controller.getById(id);
         const [infos] = await infoController.getById(id);
+        const [menuData] = await menuController.getById(id);
         const data = infos[0]
         if(rows.length > 0){
             Object.assign(data, rows[0])
             delete data.shop_id
         }
+        data.menus = menuData
         res.status(200).send(data);
     }catch(err){
         console.log(err);
