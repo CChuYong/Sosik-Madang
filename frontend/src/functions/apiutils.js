@@ -7,19 +7,15 @@ async function apiGet(endpoint) {
 }
 
 async function apiPost(endpoint, jsonData) {
-  const data = typeof(jsonData) === "string" ? JSON.parse(jsonData) : jsonData;
-
-  return (await axios.post(`${process.env.VUE_APP_API_HOST}${endpoint}`, data, {
-    responseType: "json",
-  })).data;
+  return (await axios.post(`${process.env.VUE_APP_API_HOST}${endpoint}`, jsonData, {
+      responseType: "json",
+    })).data;
 }
 
 async function apiPut(endpoint, jsonData) {
-  const data = typeof(jsonData) === "string" ? JSON.parse(jsonData) : jsonData;
-
-  return (await axios.put(`${process.env.VUE_APP_API_HOST}${endpoint}`, data, {
-    responseType: "json",
-  })).data;
+  return (await axios.put(`${process.env.VUE_APP_API_HOST}${endpoint}`, jsonData, {
+      responseType: "json",
+    })).data;
 }
 
 export default {
