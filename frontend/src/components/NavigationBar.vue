@@ -6,8 +6,8 @@
     </div>
 
     <div class="nav-icons" title="전체 맛집 목록 보기" @click="showAllShopsClick">
-      <img class="icon" src="@/assets/icons/mdi-format-list-text-white.svg" />
-      <span class="text">전체 맛집 목록 보기</span>
+      <img class="icon" :src="$store.state.shopListFlyoutShown ? require('@/assets/icons/mdi-close-white.svg') : require('@/assets/icons/mdi-format-list-text-white.svg')" />
+      <span class="text">전체 맛집 목록 {{ $store.state.shopListFlyoutShown ? "닫기" : "보기" }}</span>
     </div>
   </nav>
 </template>
