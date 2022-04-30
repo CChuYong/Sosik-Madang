@@ -10,9 +10,32 @@
         <shop-type-badge :type="shopInfo.type" />
       </div>
 
-      <p class="info-item"><img src="@/assets/icons/mdi-clock-time-three-outline-black.svg" /> <strong>운영 시간</strong> <span>{{ shopInfo.operatingTime }}</span></p>
-      <p class="info-item"><img src="@/assets/icons/mdi-card-account-phone-outline-black.svg" /> <strong>전화번호</strong> <a :href="`tel:${shopInfo.phoneNumber}`">{{ shopInfo.phoneNumber }}</a></p>
-      <p class="info-item"><img src="@/assets/icons/mdi-map-marker-outline-black.svg" /> <strong>주소</strong> <span>{{ shopInfo.address }}</span></p>
+      <table class="info-table">
+        <tr>
+          <th><img src="@/assets/icons/mdi-clock-time-three-outline-black.svg" /> <strong>운영 시간</strong></th>
+          <td><span>{{ shopInfo.operating_time }}</span></td>
+        </tr>
+        <tr>
+          <th><img src="@/assets/icons/mdi-card-account-phone-outline-black.svg" /> <strong>전화번호</strong></th>
+          <td><a :href="`tel:${shopInfo.phone_number}`">{{ shopInfo.phone_number }}</a></td>
+        </tr>
+        <tr>
+          <th><img src="@/assets/icons/mdi-map-marker-outline-black.svg" /> <strong>주소</strong></th>
+          <td><span>{{ shopInfo.address }}</span></td>
+        </tr>
+        <tr>
+          <th class="info-menus-header"><img src="@/assets/icons/mdi-clipboard-list-outline-black.svg" /> <strong>주요 메뉴</strong></th>
+          <td>
+            <table class="info-menus-table">
+              <tr v-for="menu in shopInfo.menus"
+                  :key="menu.menu_name">
+                <td>{{ menu.menu_name }}</td>
+                <td>{{ formatCurrency(menu.menu_price) }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
 
       <div class="leave-review-container">
         <star-rating v-model:rating="reviewRating" :increment="0.5" />
@@ -54,6 +77,7 @@ export default {
           lat: -1,
           lng: -1,
         },
+        menus: [],
       },
       reviews: [],
       reviewWriter: "",
@@ -70,22 +94,17 @@ export default {
         "content": this.$data.reviewText,
       });
     },
+    formatCurrency(num) {
+      if(!isNaN(num)) {
+        return new Intl.NumberFormat("ko-KR", { style: "currency", "currency": "KRW" }).format(num);
+      } else {
+        return num;
+      }
+    },
   },
   async mounted() {
     /* get shop info */
-    const shopData = await API.apiGet(`/shops/detail/${this.$route.params.id}`);
-
-    this.$data.shopInfo = {
-      name: shopData.name,
-      type: shopData.type,
-      operatingTime: shopData["operating_time"],
-      phoneNumber: shopData["phone_number"],
-      address: shopData.address,
-      location: {
-        lat: shopData["location_lat"],
-        lng: shopData["location_lng"],
-      },
-    };
+    this.$data.shopInfo = await API.apiGet(`/shops/detail/${this.$route.params.id}`);
     /* === */
     /* get reviews */
     this.$data.reviews = await API.apiGet(`/shops/reviews/${this.$route.params.id}`);
@@ -200,13 +219,36 @@ a {
       }
     }
 
-    .info-item {
-      display: flex;
-      align-items: center;
+    .info-table {
+      width: 100%;
+      text-align: left;
 
-      & > * {
-        margin: 0 0.33em;
-        word-break: keep-all;
+      * {
+        vertical-align: middle;
+      }
+
+      tr > * {
+        padding: 0.33em;
+
+        &:first-child {
+          padding: 0.33em 0.33em 0.33em 0;
+        }
+      }
+
+      th {
+        white-space: nowrap;
+      
+        img {
+          margin-right: 0.33em;
+        }
+      }
+
+      th.info-menus-header {
+        vertical-align: top;
+      }
+
+      table.info-menus-table {
+        width: 100%;
       }
     }
 
