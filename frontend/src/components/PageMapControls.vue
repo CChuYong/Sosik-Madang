@@ -50,11 +50,17 @@ export default {
     };
   },
   watch: {
-    filterOptions() { this.updateMap(); },
+    filterOptions: {
+      deep: true,
+      handler() { this.updateMap(); },
+    },
   },
   methods: {
     getActivatedShopTypes() {
       return this.shopTypes.filter((x) => x.filterActivated).map((x) => x.slug);
+    },
+    isShopRatingAbove4(shopId) {
+      return this.$store.state.shopListAll.find((x) => x.id === shopId).rating >= 4;
     },
     updateMap() {
       const filterShopType = this.$store.state.shopTypes.filter((x) => x.filterActivated).map((x) => x.typeName);
@@ -62,14 +68,22 @@ export default {
       if(filterShopType.length <= 0) {
         // 종류 필터를 아무것도 선택하지 않은 경우 마커 전체 표시
         this.$store.state.shopMarkersAll.forEach((marker) => {
-          marker.marker.setMap(this.$store.state.mapInstance);
-        });
-      } else {
-        this.$store.state.shopMarkersAll.forEach((marker) => {
-          if(filterShopType.indexOf(marker.type) <= -1) {
+          if(this.$data.filterOptions.filterRatingAbove4 && !this.isShopRatingAbove4(marker.id)) {
             marker.marker.setMap(null);
           } else {
             marker.marker.setMap(this.$store.state.mapInstance);
+          }
+        });
+      } else {
+        this.$store.state.shopMarkersAll.forEach((marker) => {
+          if(this.$data.filterOptions.filterRatingAbove4 && !this.isShopRatingAbove4(marker.id)) {
+            marker.marker.setMap(null);
+          } else {
+            if(filterShopType.indexOf(marker.type) <= -1) {
+              marker.marker.setMap(null);
+            } else {
+              marker.marker.setMap(this.$store.state.mapInstance);
+            }
           }
         });
       }
