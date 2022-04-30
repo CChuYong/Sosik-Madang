@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 
 //.env파일을 환경변수로 불러오기 위한 구문
@@ -8,6 +9,7 @@ require('dotenv').config();
 const shopInfo = require('./routes/api/shop/shopinfo');
 const shopReview = require('./routes/api/shop/shopreview');
 const shopDetail = require('./routes/api/shop/shopdetail');
+app.use(bodyParser.json())
 app.use('/api/shops/info', shopInfo);
 app.use('/api/shops/reviews', shopReview);
 app.use('/api/shops/detail', shopDetail)
