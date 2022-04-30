@@ -62,6 +62,7 @@ export default {
 
         markers.push({
           id: shop.id,
+          type: shop.type,
           marker,
         });
       });

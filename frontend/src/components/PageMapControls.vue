@@ -9,7 +9,7 @@
               class="button toggle"
               :class="{ active: type.filterActivated }"
               :style="{ backgroundColor: type.backgroundColor }"
-              @click="() => { type.filterActivated = !type.filterActivated; }">
+              @click="() => { type.filterActivated = !type.filterActivated; updateMap(); }">
           {{ type.typeName }}
         </span>
       </div>
@@ -41,10 +41,6 @@ export default {
     };
   },
   watch: {
-    shopTypes: {
-      deep: true,
-      handler() { this.updateMap(); },
-    },
     filterOptions() { this.updateMap(); },
   },
   methods: {
@@ -52,8 +48,22 @@ export default {
       return this.shopTypes.filter((x) => x.filterActivated).map((x) => x.slug);
     },
     updateMap() {
-      console.log("map update");
-      // TODO
+      const filterShopType = this.$store.state.shopTypes.filter((x) => x.filterActivated).map((x) => x.typeName);
+      
+      if(filterShopType.length <= 0) {
+        // 종류 필터를 아무것도 선택하지 않은 경우 마커 전체 표시
+        this.$store.state.shopMarkersAll.forEach((marker) => {
+          marker.marker.setMap(this.$store.state.mapInstance);
+        });
+      } else {
+        this.$store.state.shopMarkersAll.forEach((marker) => {
+          if(filterShopType.indexOf(marker.type) <= -1) {
+            marker.marker.setMap(null);
+          } else {
+            marker.marker.setMap(this.$store.state.mapInstance);
+          }
+        });
+      }
     },
   },
 };
