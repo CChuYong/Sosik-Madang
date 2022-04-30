@@ -41,9 +41,7 @@ export default {
         new window.kakao.maps.MarkerImage(
           require("@/assets/markers/swmaestro-logo-compressed.png"),
           new window.kakao.maps.Size(96, 41),
-          {
-            offset: new window.kakao.maps.Point(48, 20),
-          }
+          { offset: new window.kakao.maps.Point(48, 20) },
         ));
       addInfoWindow(mapInstance, marker, "<span class='accent'>SW마에스트로 연수센터</span>", somaCenterPosition.lat, somaCenterPosition.lng, false);
 
