@@ -105,6 +105,7 @@ export default {
     cursor: pointer;
     text-align: center;
     border-radius: 0.5em;
+    padding: 0.25em;
     transition: background-color 0.25s;
 
     &:hover {
@@ -117,7 +118,7 @@ export default {
   }
 
   .control-container-parent {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 
     .control-container {
       display: flex;
