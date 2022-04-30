@@ -6,15 +6,16 @@
         <a class="close" @click="$router.back()"><img src="@/assets/icons/mdi-close-black.svg" alt="가게 정보 창 닫기" /></a>
       </div>
 
-      <shop-type-badge :type="shopInfo.type" />
+      <div class="subtitle-area">
+        <shop-type-badge :type="shopInfo.type" />
+      </div>
 
-      <p>운영시간 {{ shopInfo.operatingTime }}</p>
-      <p>대표 전화번호 {{ shopInfo.phoneNumber }}</p>
-      <p>human-readable 주소 {{ shopInfo.address }}</p>
-      <p>위도 {{ shopInfo.location.lat }}도, 경도 {{ shopInfo.location.lng }}도</p>
+      <p class="info-item"><img src="@/assets/icons/mdi-clock-time-three-outline-black.svg" /> <strong>운영 시간</strong> <span>{{ shopInfo.operatingTime }}</span></p>
+      <p class="info-item"><img src="@/assets/icons/mdi-card-account-phone-outline-black.svg" /> <strong>전화번호</strong> <a :href="`tel:${shopInfo.phoneNumber}`">{{ shopInfo.phoneNumber }}</a></p>
+      <p class="info-item"><img src="@/assets/icons/mdi-map-marker-outline-black.svg" /> <strong>주소</strong> <span>{{ shopInfo.address }}</span></p>
 
-      <div id="leave-review-container">
-        <star-rating v-model:rating="reviewRating" :increment="0.5" :show-rating="false" />
+      <div class="leave-review-container">
+        <star-rating v-model:rating="reviewRating" :increment="0.5" />
 
         <div>
           <span>이름 : </span><input v-model="reviewWriter" type="text" placeholder="리뷰 작성자명">
@@ -22,6 +23,10 @@
         <input v-model="reviewText" type="text" placeholder="리뷰 내용...">
 
         <input type="button" value="리뷰 남기기" @click="onLeaveReviewButtonClick" :disabled="reviewText.length <= 0 || reviewWriter.length <= 0">
+      </div>
+
+      <div id="reviews">
+
       </div>
     </div>
   </div>
@@ -50,6 +55,7 @@ export default {
           lng: -1,
         },
       },
+      reviews: [],
       reviewWriter: "",
       reviewText: "",
       reviewRating: 5,
@@ -81,15 +87,43 @@ export default {
       },
     };
     /* === */
+    /* get reviews */
+    this.$data.reviews = await API.apiGet(`/shops/reviews/${this.$route.params.id}`);
+    /* === */
   },
 };
 </script>
 
+<style lang="scss">
+.vue-star-rating-rating-text:after {
+  content: "점";
+}
+</style>
+
 <style lang="scss" scoped>
 a {
   cursor: pointer;
+  position: relative;
   color: currentColor;
   text-decoration: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.33s $ease-out-bezier;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+    }
+  }
 }
 
 .dialog {
@@ -164,6 +198,20 @@ a {
           }
         }
       }
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+
+      & > * {
+        margin: 0 0.33em;
+      }
+    }
+
+    .leave-review-container {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
