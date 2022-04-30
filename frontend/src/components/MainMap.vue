@@ -53,8 +53,19 @@ export default {
     },
     registerAllShopsMarker() {
       const markers = [];
+      
       this.$store.state.shopListAll.forEach((shop) => {
-        const marker = addMarker(this.$store.state.mapInstance, shop["location_lat"], shop["location_lng"]);
+        const shopTypeSlug = this.$store.state.shopTypes.find((x) => x.typeName === shop.type).slug;
+
+        const marker = addMarker(this.$store.state.mapInstance,
+          shop["location_lat"],
+          shop["location_lng"],
+          shopTypeSlug ? new window.kakao.maps.MarkerImage(
+            require(`@/assets/markers/marker_${shopTypeSlug}.svg`),
+            new window.kakao.maps.Size(32, 46),
+            { offset: new window.kakao.maps.Point(16, 46) },
+          ) : undefined,
+        );
 
         window.kakao.maps.event.addListener(marker, "click", () => {
           this.$store.state.mapInstance.panTo(marker.getPosition());
