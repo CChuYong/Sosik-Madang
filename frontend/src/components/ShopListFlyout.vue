@@ -12,7 +12,8 @@
           <star-rating :read-only="true"
                        :rating="shop.rating"
                        :show-rating="false"
-                       :star-size="24" />
+                       :star-size="24"
+                       :increment="0.5" />
           <span class="review-count">({{ shop.reviewCount }})</span>
         </div>
       </li>
@@ -90,11 +91,12 @@ export default {
 
     li.shop-list-item {
       cursor: pointer;
-      padding: 1rem 1rem 1rem 3rem;
-      transition: background-color 0.15s;
+      padding: 1rem 1rem 1rem 2rem;
+      transition: background-color 0.15s, padding-left 0.15s $ease-out-bezier;
 
       &:hover {
         background-color: rgba($body-accent-color, 0.75);
+        padding-left: 2.5rem;
       }
 
       .name {
