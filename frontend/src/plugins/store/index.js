@@ -73,6 +73,12 @@ export default createStore({
     shopListFlyoutShown: false,
   },
   mutations: {
+    mapInstance(state, instance) {
+      state.mapInstance = instance;
+    },
+    kakaoMapScriptLoaded(state, bool) {
+      state.kakaoMapScriptLoaded = bool;
+    },
     shopListAll(state, list) {
       state.shopListAll = list;
     },

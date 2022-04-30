@@ -71,6 +71,7 @@ export default {
   backdrop-filter: blur(0.5rem);
   box-shadow: 0 0.33rem 1rem rgba($body-background-color, 0.33);
   border-radius: 0.5em;
+  z-index: 10;
 
   .control-container {
     display: flex;
