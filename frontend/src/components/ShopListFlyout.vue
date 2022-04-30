@@ -7,8 +7,7 @@
           @click="shopItemClick(shop)">
         <div class="name">{{ shop.name }}</div>
         <div class="rating-reviews">
-          <div class="type"
-               :style="{ backgroundColor: getShopTypeBackgroundColor(shop.type) }">{{ shop.type }}</div>
+          <shop-type-badge :type="shop.type" />
           <star-rating :read-only="true"
                        :rating="shop.rating"
                        :show-rating="false"
@@ -23,11 +22,13 @@
 
 <script>
 import StarRating from "vue-star-rating";
+import ShopTypeBadge from "@/components/ShopTypeBadge.vue";
 
 export default {
   name: "ShopListFlyout",
   components: {
     StarRating,
+    ShopTypeBadge,
   },
   props: {
     show: Boolean,
@@ -108,13 +109,6 @@ export default {
       .rating-reviews {
         display: flex;
         align-items: center;
-
-        .type {
-          padding: 0.25em 0.5em;
-          margin-right: 0.75em;
-          color: $body-foreground-color;
-          border-radius: 0.25em;
-        }
 
         .review-count {
           margin-left: 0.25em;
