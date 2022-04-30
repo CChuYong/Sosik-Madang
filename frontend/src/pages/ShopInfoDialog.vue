@@ -6,27 +6,37 @@
         <a class="close" @click="$router.back()"><img src="@/assets/icons/mdi-close-black.svg" alt="가게 정보 창 닫기" /></a>
       </div>
 
-      <p>리뷰 {{ shopInfo.reviewCount }}개</p>
-      <p>별점 {{ shopInfo.rating }}점</p>
-      <p>식당 종류 : {{ shopInfo.type }}</p>
+      <shop-type-badge :type="shopInfo.type" />
+
+      <p>운영시간 {{ shopInfo.operatingTime }}</p>
+      <p>대표 전화번호 {{ shopInfo.phoneNumber }}</p>
+      <p>human-readable 주소 {{ shopInfo.address }}</p>
       <p>위도 {{ shopInfo.location.lat }}도, 경도 {{ shopInfo.location.lng }}도</p>
 
-      <star-rating v-model:rating="reviewRating" :increment="0.5" />
-      <input v-model="reviewWriter" type="text" placeholder="리뷰 작성자">
-      <input v-model="reviewText" type="text" placeholder="리뷰 내용...">
-      <input type="button" value="리뷰 남기기" @click="onLeaveReviewButtonClick" :disabled="reviewText.length <= 0 || reviewWriter.length <= 0">
+      <div id="leave-review-container">
+        <star-rating v-model:rating="reviewRating" :increment="0.5" :show-rating="false" />
+
+        <div>
+          <span>이름 : </span><input v-model="reviewWriter" type="text" placeholder="리뷰 작성자명">
+        </div>
+        <input v-model="reviewText" type="text" placeholder="리뷰 내용...">
+
+        <input type="button" value="리뷰 남기기" @click="onLeaveReviewButtonClick" :disabled="reviewText.length <= 0 || reviewWriter.length <= 0">
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import StarRating from "vue-star-rating";
+import ShopTypeBadge from "@/components/ShopTypeBadge.vue";
 import API from "@/functions/apiutils";
 
 export default {
   name: "ShopInfoDialog",
   components: {
     StarRating,
+    ShopTypeBadge,
   },
   data() {
     return {
@@ -47,7 +57,6 @@ export default {
   },
   methods: {
     async onLeaveReviewButtonClick() {
-      // TODO: send data using form-urlencoded (`qs` library => `qs.stringify()`)
       await API.apiPut("/shops/reviews", {
         "shop_id": parseInt(this.$route.params.id),
         "writer": this.$data.reviewWriter,
@@ -58,13 +67,14 @@ export default {
   },
   async mounted() {
     /* get shop info */
-    const shopData = await API.apiGet(`/shops/info/${this.$route.params.id}`);
+    const shopData = await API.apiGet(`/shops/detail/${this.$route.params.id}`);
 
     this.$data.shopInfo = {
       name: shopData.name,
       type: shopData.type,
-      reviewCount: shopData.reviewCount,
-      rating: shopData.rating,
+      operatingTime: shopData["operating_time"],
+      phoneNumber: shopData["phone_number"],
+      address: shopData.address,
       location: {
         lat: shopData["location_lat"],
         lng: shopData["location_lng"],
